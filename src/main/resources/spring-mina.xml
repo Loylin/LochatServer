@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.net.SocketAddress" value="org.apache.mina.integration.beans.InetSocketAddressEditor">
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- filter -->
+    <bean id="codecFilter" class="org.apache.mina.filter.codec.ProtocolCodecFilter">
+        <constructor-arg>
+            <bean class="cn.loylin.lochat.xmpp.codec.XmppCodecFactory"/>
+        </constructor-arg>
+    </bean>
+    <bean id="loggingFilter" class="org.apache.mina.filter.logging.LoggingFilter"/>
+    <bean id="executorFilter" class="org.apache.mina.filter.executor.ExecutorFilter"/>
+
+    <!-- filterChain -->
+    <bean id="filterChainBuilder" class="org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder">
+        <property name="filters">
+            <map>
+                <entry key="executor" value-ref="executorFilter"/>
+                <entry key="codecFilter" value-ref="codecFilter"/>
+                <entry key="loggingFilter" value-ref="loggingFilter"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- handler-->
+    <bean id="xmppHandler" class="cn.loylin.lochat.xmpp.XmppIoHandler"/>
+
+    <!-- session config 通过工厂方法注入 -->
+    <bean id="sessionConfig" factory-bean="ioAcceptor" factory-method="getSessionConfig">
+        <property name="minReadBufferSize" value="512"/>
+        <property name="maxReadBufferSize" value="10240"/>
+    </bean>
+
+    <bean id="ioAcceptor" class="org.apache.mina.transport.socket.nio.NioSocketAcceptor"
+          init-method="bind" destroy-method="unbind">
+        <property name="defaultLocalAddress" value=":8888"/>
+        <property name="handler" ref="xmppHandler"/>
+        <property name="filterChainBuilder" ref="filterChainBuilder"/>
+        <property name="reuseAddress" value="true"/>
+    </bean>
+
+</beans>
