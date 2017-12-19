@@ -1,0 +1,67 @@
+body{
+    margin: 0;
+    height: 100%;
+}
+
+.home-page .home-navbar{
+    color: white;
+}
+
+.home-navbar a p{
+    color: white;
+}
+
+.home-navbar a{
+    cursor: pointer;
+}
+
+.home-navbar .home-navbar-right{
+    font-size: 20px;
+    margin-right: 15px;
+    line-height: 50px;
+}
+
+.home-page .home-left{
+    width: 200px;
+    background-color: #222;
+    color: white;
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+}
+
+.home-page .home-left p{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 25px;
+    border-bottom: 1px solid black;
+}
+
+.home-page .home-left a{
+    color: white;
+    font-size: 15px;
+}
+
+.home-page .home-left li{
+    border-bottom: 1px solid gray;
+}
+
+.home-page .home-left a:hover{
+    background-color: gray;
+}
+
+.home-page .home-main{
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    width:calc(100% - 200px);
+    margin-left: 185px;
+}
+
+.home-page .home-main iframe{
+    width: 100%;
+    height: 100%;
+    border: 0;
+}

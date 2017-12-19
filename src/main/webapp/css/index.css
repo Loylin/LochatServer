@@ -1,0 +1,54 @@
+body{
+    width: 100%;
+    height: 100%;
+    background: url("../common/image/background.jpg") no-repeat 0 0;
+}
+
+.mynav{
+    background-color: rgba(0,0,0,0.0);
+    border-color: rgba(0,0,0,0.0);
+}
+
+.mynav a p{
+    color: #FFF;
+    font-size: 25px;
+}
+
+.login .login-border{
+    margin-top: 100px;
+    border-radius: 20px 20px 20px 20px;
+    min-height: 300px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.login .login-footer{
+    background-color: gray;
+    border: none;
+}
+.login-footer .footer-brand{
+    color: white;
+    width: 100%;
+}
+.login-footer .footer-brand:hover{
+    color: white;
+}
+
+.login .login-form .login-title{
+    margin: 0 -15px 30px -15px;
+    font-size: 20px;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    background-color: #043a7a;
+    border-bottom: 2px solid cornflowerblue;
+}
+
+.login-form .login-btn{
+    width: 50%;
+    display: block;
+    margin:  0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
